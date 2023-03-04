@@ -78,7 +78,7 @@ type noItemState struct {
 }
 
 func (i *noItemState) requestItem() error {
-	return fmt.Errorf("Item out of stock")
+	return fmt.Errorf("item out of stock")
 }
 
 func (i *noItemState) addItem(count int) error {
@@ -88,11 +88,11 @@ func (i *noItemState) addItem(count int) error {
 }
 
 func (i *noItemState) insertMoney(money int) error {
-	return fmt.Errorf("Item out of stock")
+	return fmt.Errorf("item out of stock")
 }
 
 func (i *noItemState) dispenseItem() error {
-	return fmt.Errorf("Item out of stock")
+	return fmt.Errorf("item out of stock")
 }
 
 type hasItemState struct {
@@ -102,7 +102,7 @@ type hasItemState struct {
 func (i *hasItemState) requestItem() error {
 	if i.vendingMachine.itemCount == 0 {
 		i.vendingMachine.setState(i.vendingMachine.noItem)
-		return fmt.Errorf("No item present")
+		return fmt.Errorf("no item present")
 	}
 	fmt.Printf("Item requestd\n")
 	i.vendingMachine.setState(i.vendingMachine.itemRequested)
@@ -116,11 +116,11 @@ func (i *hasItemState) addItem(count int) error {
 }
 
 func (i *hasItemState) insertMoney(money int) error {
-	return fmt.Errorf("Please select item first")
+	return fmt.Errorf("please select item first")
 }
 
 func (i *hasItemState) dispenseItem() error {
-	return fmt.Errorf("Please select item first")
+	return fmt.Errorf("please select item first")
 }
 
 type itemRequestedState struct {
@@ -128,16 +128,16 @@ type itemRequestedState struct {
 }
 
 func (i *itemRequestedState) requestItem() error {
-	return fmt.Errorf("Item already requested")
+	return fmt.Errorf("item already requested")
 }
 
 func (i *itemRequestedState) addItem(count int) error {
-	return fmt.Errorf("Item Dispense in progress")
+	return fmt.Errorf("item Dispense in progress")
 }
 
 func (i *itemRequestedState) insertMoney(money int) error {
 	if money < i.vendingMachine.itemPrice {
-		return fmt.Errorf("Inserted money is less. Please insert %d", i.vendingMachine.itemPrice)
+		return fmt.Errorf("inserted money is less. Please insert %d", i.vendingMachine.itemPrice)
 	}
 	fmt.Println("Money entered is ok")
 	i.vendingMachine.setState(i.vendingMachine.hasMoney)
@@ -145,7 +145,7 @@ func (i *itemRequestedState) insertMoney(money int) error {
 }
 
 func (i *itemRequestedState) dispenseItem() error {
-	return fmt.Errorf("Please insert money first")
+	return fmt.Errorf("please insert money first")
 }
 
 type hasMoneyState struct {
@@ -153,15 +153,15 @@ type hasMoneyState struct {
 }
 
 func (i *hasMoneyState) requestItem() error {
-	return fmt.Errorf("Item dispense in progress")
+	return fmt.Errorf("item dispense in progress")
 }
 
 func (i *hasMoneyState) addItem(count int) error {
-	return fmt.Errorf("Item dispense in progress")
+	return fmt.Errorf("item dispense in progress")
 }
 
 func (i *hasMoneyState) insertMoney(money int) error {
-	return fmt.Errorf("Item dispense in progress")
+	return fmt.Errorf("item dispense in progress")
 }
 
 func (i *hasMoneyState) dispenseItem() error {
