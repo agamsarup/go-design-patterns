@@ -18,5 +18,4 @@ func TestTemplateMethod(t *testing.T) {
 		iOtp: emailOTP,
 	}
 	o.genAndSendOTP(4)
-
 }
